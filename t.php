@@ -10,18 +10,20 @@ $db = $database->getConnection();
 // Créer un utilisateur
 $user = new User($db);
 
-$user->email = 'client@example.com';
+/*$user->email = 'client@example.com';
 $user->password = '123456';
 $user->role_id = 2; // Client
 if($user->create()) {
     echo "User created successfully.";
 } else {
     echo "User could not be created.";
-}
+}*/
 
 // Connexion d'un utilisateur
-$user->email = 'client@example.com';
-$user->password = '123456';
+echo $_POST['email'];
+echo $_POST['password'];
+$user->email = $_POST['email'];
+$user->password = $_POST['password'];
 $loggedInUser = $user->login();
 if($loggedInUser) {
     echo "User logged in successfully.";

