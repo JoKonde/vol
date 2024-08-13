@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+
+?>
 <html lang="fr">
 
 <head>
@@ -141,6 +145,13 @@
                 
                 
                 <form class="needs-validation" method="post" action="t.php">
+                  <?php
+                        if(isset($_SESSION['msg'])) {
+                          echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
+                          // Supprimer le message d'erreur après l'affichage
+                          unset($_SESSION['msg']);
+                      }
+                  ?>
                   <div class="mb-4">
                     <label class="form-label mb-2" for="signin-email">Email</label>
                     <input class="form-control" type="email" id="signin-email" name="email" placeholder="Votre adresse email" required>

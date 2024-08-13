@@ -86,15 +86,13 @@ class User {
 
         $this->email = htmlspecialchars(strip_tags($this->email));
         $stmt->bindParam(':email', $this->email);
-
+        
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($this->password, $user['password'])) {
+        if ($user && ($this->password==$user['password'])) {
             return $user;
         }
-
         return false;
     }
 }

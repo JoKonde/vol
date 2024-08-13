@@ -3,6 +3,8 @@ require_once 'Database.php';
 require_once 'User.php';
 require_once 'Vol.php';
 
+session_start();
+
 // Connexion à la base de données
 $database = new Database();
 $db = $database->getConnection();
@@ -20,15 +22,17 @@ if($user->create()) {
 }*/
 
 // Connexion d'un utilisateur
-echo $_POST['email'];
-echo $_POST['password'];
+
 $user->email = $_POST['email'];
 $user->password = $_POST['password'];
 $loggedInUser = $user->login();
+
 if($loggedInUser) {
     echo "User logged in successfully.";
 } else {
-    echo "Login failed.";
+    $_SESSION['msg'] = "Informations incorrectes, veuillez bien verifier vos informations.";
+    header("Location: index.php");
+    exit();
 }
 
 // Rechercher un vol
