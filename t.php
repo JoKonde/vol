@@ -2,6 +2,7 @@
 require_once 'Database.php';
 require_once 'User.php';
 require_once 'Vol.php';
+require_once 'Role.php';
 
 session_start();
 
@@ -11,6 +12,7 @@ $db = $database->getConnection();
 
 // Créer un utilisateur
 $user = new User($db);
+$role = new Role($db);
 
 /*$user->email = 'client@example.com';
 $user->password = '123456';
@@ -28,7 +30,11 @@ $user->password = $_POST['password'];
 $loggedInUser = $user->login();
 
 if($loggedInUser) {
-    echo "User logged in successfully.";
+    //header("Location: dashboard.php");
+    $role->id = $user->role_id;
+    echo $role->findByName();
+    $_SESSION['email'] =$user->email;
+    exit();
 } else {
     $_SESSION['msg'] = "Informations incorrectes, veuillez bien verifier vos informations.";
     header("Location: index.php");

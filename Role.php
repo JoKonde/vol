@@ -32,6 +32,12 @@ class Role {
         $stmt->execute();
         return $stmt;
     }
+    public function findByName() {
+        $query = "SELECT * FROM " . $this->table_name." WHERE id=:id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
 
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET nom = :nom WHERE id = :id";
