@@ -32,12 +32,25 @@ class Role {
         $stmt->execute();
         return $stmt;
     }
-    public function findByName() {
-        $query = "SELECT * FROM " . $this->table_name." WHERE id=:id";
+    public function findById($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id =".$id;
         $stmt = $this->conn->prepare($query);
+        
+        // Vérifier si la préparation de la requête a réussi
+        if ($stmt === false) {
+            throw new Exception('Erreur lors de la préparation de la requête.');
+        }
+        
+        // Lier le paramètre :id à la valeur de $id
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+        // Exécuter la requête
         $stmt->execute();
-        return $stmt;
+        
+        // Retourner le résultat de la requête sous forme de tableau associatif
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET nom = :nom WHERE id = :id";

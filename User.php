@@ -81,19 +81,27 @@ class User {
 
     public function login() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
-
+    
         $stmt = $this->conn->prepare($query);
-
+    
+        // Protéger les données en supprimant les balises HTML et les espaces
         $this->email = htmlspecialchars(strip_tags($this->email));
         $stmt->bindParam(':email', $this->email);
         
         $stmt->execute();
-
+    
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user && ($this->password==$user['password'])) {
-            return $user;
+    
+        // Vérification du mot de passe
+        if ($user && ($this->password == $user['password'])) {
+            // Remplir l'objet utilisateur avec les valeurs de la base de données
+            foreach ($user as $key => $value) {
+                $this->$key = $value;
+            }
+            return $this;
         }
         return false;
     }
+    
 }
 ?>

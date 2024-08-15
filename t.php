@@ -32,7 +32,8 @@ $loggedInUser = $user->login();
 if($loggedInUser) {
     //header("Location: dashboard.php");
     $role->id = $user->role_id;
-    echo $role->findByName();
+    $role= $role->findById($user->role_id);
+    echo json_encode($role);
     $_SESSION['email'] =$user->email;
     exit();
 } else {
