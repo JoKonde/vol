@@ -30,11 +30,11 @@ $user->password = $_POST['password'];
 $loggedInUser = $user->login();
 
 if($loggedInUser) {
-    //header("Location: dashboard.php");
     $role->id = $user->role_id;
     $role= $role->findById($user->role_id);
-    echo json_encode($role);
     $_SESSION['email'] =$user->email;
+    $_SESSION['role'] =$role->nom;
+    header("Location: dashboard.php");
     exit();
 } else {
     $_SESSION['msg'] = "Informations incorrectes, veuillez bien verifier vos informations.";

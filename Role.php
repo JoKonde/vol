@@ -33,7 +33,7 @@ class Role {
         return $stmt;
     }
     public function findById($id) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id =".$id;
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         
         // Vérifier si la préparation de la requête a réussi
