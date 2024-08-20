@@ -238,8 +238,10 @@ session_start();
     </div>
     <!-- Navbar-->
     <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
-      <div class="container"><a class="navbar-brand me-3 me-xl-4" href="index.php"><img class="d-block" src="img/logo.png" width="90" alt="Finder"></a>
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-sm text-primary d-none d-lg-block order-lg-3" href="#se-connecter" data-bs-toggle="modal"><i class="fi-user me-2"></i>Connexion</a><a class="btn btn-primary btn-sm rounded-pill ms-2 order-lg-3" href="#signup-modal" data-bs-toggle="modal"><i class="fi-plus me-2"></i>Créer Compte</a>
+      <div class="container">
+        <a class="navbar-brand me-3 me-xl-4" href="index.php"><img class="d-block" src="img/logo.png" width="90" alt="Finder"></a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <a class="btn btn-sm text-primary d-none d-lg-block order-lg-3" href="#se-connecter" data-bs-toggle="modal"><i class="fi-user me-2"></i>Connexion</a><a class="btn btn-primary btn-sm rounded-pill ms-2 order-lg-3" href="#signup-modal" data-bs-toggle="modal"><i class="fi-plus me-2"></i>Créer Compte</a>
         <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
           <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
             <!-- Demos switcher-->

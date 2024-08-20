@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-  
+  <?php 
+  session_start();
+
+?>
 <head>
 <meta charset="utf-8">
   <title>JMK TRAVEL | Acceuil</title>
@@ -118,94 +121,49 @@
     <main class="page-wrapper">
       <!-- Navbar-->
       <header class="navbar navbar-expand-lg navbar-light fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-3 me-xl-4" href="city-guide-home-v1.html"><img class="d-block" src="img/logo/logo-dark.svg" width="116" alt="Finder"></a>
+        <div class="container">
+          <a class="navbar-brand me-3 me-xl-4" href="index.php">
+            <img class="d-block" src="img/logo.png" width="90" alt="Finder"></a>
           <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="city-guide-account-info.html"><img class="rounded-circle" src="img/avatars/36.png" width="40" alt="Annette Black"></a>
             <div class="dropdown-menu dropdown-menu-end">
               <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="img/avatars/24.png" width="48" alt="Annette Black">
                 <div class="ps-2">
-                  <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                  <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
+                  <h6 class="fs-base mb-0">
+                  <?php 
+                    echo $_SESSION['email']
+                ?>
+                  </h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                 </div>
               </div><a class="dropdown-item" href="city-guide-account-info.html"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="city-guide-account-favorites.html"><i class="fi-heart opacity-60 me-2"></i>Favorites</a><a class="dropdown-item" href="city-guide-vendor-businesses.html"><i class="fi-home opacity-60 me-2"></i>My Businesses</a><a class="dropdown-item" href="city-guide-account-reviews.html"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="city-guide-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="city-guide-help-center.html">Help</a><a class="dropdown-item" href="signin-light.html">Sign Out</a>
             </div>
-          </div><a class="btn btn-primary btn-sm rounded-pill ms-2 order-lg-3" href="city-guide-add-business.html"><i class="fi-plus me-2"></i>Add<span class='d-none d-sm-inline'> business</span></a>
+          </div>
+          
+          
           <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
             <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-              <!-- Demos switcher-->
-              <li class="nav-item dropdown me-lg-2"><a class="nav-link dropdown-toggle align-items-center pe-lg-4" href="#" data-bs-toggle="dropdown" role="button" aria-expanded="false"><i class="fi-layers me-2"></i>Demos<span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y border-end" style="width: 1px; height: 30px;"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="real-estate-home-v1.html"><i class="fi-building fs-base opacity-50 me-2"></i>Real Estate Demo</a></li>
-                  <li class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="car-finder-home.html"><i class="fi-car fs-base opacity-50 me-2"></i>Car Finder Demo</a></li>
-                  <li class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="job-board-home-v1.html"><i class="fi-briefcase fs-base opacity-50 me-2"></i>Job Board Demo</a></li>
-                  <li class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="city-guide-home-v1.html"><i class="fi-map-pin fs-base opacity-50 me-2"></i>City Guide Demo</a></li>
-                  <li class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="index.html"><i class="fi-home fs-base opacity-50 me-2"></i>Main Page</a></li>
-                  <li><a class="dropdown-item" href="components/typography.html"><i class="fi-list fs-base opacity-50 me-2"></i>Components</a></li>
-                  <li><a class="dropdown-item" href="docs/dev-setup.html"><i class="fi-file fs-base opacity-50 me-2"></i>Documentation</a></li>
-                </ul>
-              </li>
-              <!-- Menu items-->
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="city-guide-home-v1.html">Homepage v.1</a></li>
-                  <li><a class="dropdown-item" href="city-guide-home-v2.html">Homepage v.2</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="city-guide-catalog.html">Grid with Filters</a></li>
-                  <li><a class="dropdown-item" href="city-guide-single.html">Single Place - Gallery</a></li>
-                  <li><a class="dropdown-item" href="city-guide-single-info.html">Single Place - Info</a></li>
-                  <li><a class="dropdown-item" href="city-guide-single-reviews.html">Single Place - Reviews</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="city-guide-account-info.html">Personal Info</a></li>
-                  <li><a class="dropdown-item" href="city-guide-account-favorites.html">Favorites</a></li>
-                  <li><a class="dropdown-item" href="city-guide-account-reviews.html">Reviews</a></li>
-                  <li><a class="dropdown-item" href="city-guide-account-notifications.html">Notifications</a></li>
-                  <li><a class="dropdown-item" href="signin-light.html">Sign In</a></li>
-                  <li><a class="dropdown-item" href="signup-light.html">Sign Up</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="city-guide-add-business.html">Add Business</a></li>
-                  <li><a class="dropdown-item" href="city-guide-business-promotion.html">Business Promotion</a></li>
-                  <li><a class="dropdown-item" href="city-guide-vendor-businesses.html">My Businesses</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="city-guide-about.html">About</a></li>
-                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="city-guide-blog.html">Blog Grid</a></li>
-                      <li><a class="dropdown-item" href="city-guide-blog-single.html">Single Post</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="city-guide-contacts.html">Contacts</a></li>
-                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Help Center</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="city-guide-help-center.html">Help Topics</a></li>
-                      <li><a class="dropdown-item" href="city-guide-help-center-single-topic.html">Single Topic</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="city-guide-404.html">404 Not Found</a></li>
-                </ul>
-              </li>
+            <li class="nav-item dropdown active me-lg-2"><a class="nav-link align-items-center pe-lg-4" href="#" role="button" aria-expanded="false"><i class="fi-layers me-2"></i>Acceuil<span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y border-end" style="width: 1px; height: 30px;"></span></a>
+
+</li>
+<!-- Menu items-->
+<li class="nav-item dropdown "><a class="nav-link" href="#" role="button" aria-expanded="false">Services</a>
+
+</li>
+<li class="nav-item dropdown "><a class="nav-link" href="#" role="button" aria-expanded="false">Contact</a>
+
+</li>
+<li class="nav-item dropdown "><a class="nav-link" href="#" role="button" aria-expanded="false">A Propos</a>
+
+</li>
+              
+              
               <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="img/avatars/36.png" width="30" alt="Annette Black">Annette Black</a>
                 <div class="dropdown-menu">
                   <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                     <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
                   </div><a class="dropdown-item" href="city-guide-account-info.html"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="city-guide-account-favorites.html"><i class="fi-heart opacity-60 me-2"></i>Favorites</a><a class="dropdown-item" href="city-guide-vendor-businesses.html"><i class="fi-home opacity-60 me-2"></i>My Businesses</a><a class="dropdown-item" href="city-guide-account-reviews.html"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="city-guide-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="city-guide-help-center.html">Help</a><a class="dropdown-item" href="signin-light.html">Sign Out</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="city-guide-help-center.html">Help</a>
                 </div>
               </li>
             </ul>
@@ -216,13 +174,7 @@
       <!-- Page container-->
       <div class="container mt-5 mb-md-4 py-5">
         <!-- Breadcrumbs-->
-        <nav class="mb-4 pt-2 pt-lg-3" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="city-guide-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="city-guide-account-info.html">Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Personal info</li>
-          </ol>
-        </nav>
+        
         <!-- Account header-->
         <div class="d-flex align-items-center justify-content-between pb-4 mb-2">
           <div class="d-flex align-items-center">
@@ -230,9 +182,13 @@
               <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
             </div>
             <div class="ps-3 ps-sm-4">
-              <h3 class="h4 mb-2">Annette Black</h3><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+              <h3 class="h4 mb-2">
+                <?php 
+                    echo $_SESSION['email']
+                ?>
+              </h3><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
             </div>
-          </div><a class="nav-link p-0 d-none d-md-block" href="signin-light.html"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+          </div>
         </div>
         <!-- Page content-->
         <div class="card card-body p-4 p-md-5 shadow-sm">
