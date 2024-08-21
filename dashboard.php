@@ -135,8 +135,12 @@
                 ?>
                   </h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                 </div>
-              </div><a class="dropdown-item" href="city-guide-account-info.html"><i class="fi-user opacity-60 me-2"></i>Personal Info</a><a class="dropdown-item" href="city-guide-account-favorites.html"><i class="fi-heart opacity-60 me-2"></i>Favorites</a><a class="dropdown-item" href="city-guide-vendor-businesses.html"><i class="fi-home opacity-60 me-2"></i>My Businesses</a><a class="dropdown-item" href="city-guide-account-reviews.html"><i class="fi-star opacity-60 me-2"></i>Reviews</a><a class="dropdown-item" href="city-guide-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="city-guide-help-center.html">Help</a><a class="dropdown-item" href="signin-light.html">Sign Out</a>
+              </div><a class="dropdown-item" href="#"><i class="fi-user opacity-60 me-2"></i>Compagnie d'avions</a>
+              <a class="dropdown-item" href="#"><i class="fi-heart opacity-60 me-2"></i>Vol</a>
+              <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Mes Vols</a>
+              <a class="dropdown-item" href="#"><i class="fi-star opacity-60 me-2"></i>Payements</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="index.php">Deconnexion</a>
             </div>
           </div>
           
@@ -158,7 +162,12 @@
 </li>
               
               
-              <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="img/avatars/36.png" width="30" alt="Annette Black">Annette Black</a>
+              <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="rounded-circle me-2" src="img/avatars/36.png" width="30" alt="user">
+              <?php 
+                    echo $_SESSION['email']
+                ?>
+            </a>
                 <div class="dropdown-menu">
                   <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                     <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
@@ -193,14 +202,20 @@
         <!-- Page content-->
         <div class="card card-body p-4 p-md-5 shadow-sm">
           <!-- Account nav-->
-          <div class="mt-md-n3 mb-4"><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+          <div class="mt-md-n3 mb-4">
+            <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse">
+              <i class="fi-align-justify me-2"></i>
+          <?php 
+                    echo $_SESSION['email']
+                ?>
+        </a>
             <div class="collapse d-md-block" id="account-nav">
               <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="city-guide-account-info.html" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Personal Info</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Favorites</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Reviews</a></li>
-                <li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Notifications</a></li>
-                <li class="nav-item d-md-none"><a class="nav-link" href="signin-light.html"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="city-guide-account-info.html" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d'aviation</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Vols</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols</a></li>
+                <li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Payements</a></li>
+                <li class="nav-item d-md-none"><a class="nav-link" href="index.php"><i class="fi-logout mt-n1 me-2 fs-base"></i>Deconnexion</a></li>
               </ul>
             </div>
           </div>
