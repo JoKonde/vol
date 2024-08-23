@@ -211,10 +211,17 @@
         </a>
             <div class="collapse d-md-block" id="account-nav">
               <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="city-guide-account-info.html" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d'aviation</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Vols</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols</a></li>
-                <li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Payements</a></li>
+              <?php
+        if ($_SESSION['role'] == "Admin") {
+            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="#" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d\'aviation</a></li>';
+            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Vols</a></li>';
+        } else {
+            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations</a></li>';
+            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols</a></li>';
+            echo '<li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Payements</a></li>';
+        }
+    ?>
+                
                 <li class="nav-item d-md-none"><a class="nav-link" href="index.php"><i class="fi-logout mt-n1 me-2 fs-base"></i>Deconnexion</a></li>
               </ul>
             </div>
@@ -227,7 +234,7 @@
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
-                  <label class="form-label fw-bold">Full name</label>
+                  <label class="form-label fw-bold">Nom compagnie</label>
                   <div id="name-value">Annette Black</div>
                 </div>
                 <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
