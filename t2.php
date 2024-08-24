@@ -15,11 +15,11 @@ $db = $database->getConnection();
 $compagnie = new Compagnie($db);
 
 $compagnie->nom = $_POST['nom'];
-$compagnie->nom = $_POST['adresse'];
+$compagnie->adresse = $_POST['adresse'];
 $comp= $compagnie->create();
-//$role= $role->findById($user->role_id);
     $_SESSION['nomCompagnie'] =$comp->nom;
     $_SESSION['adresseCompagnie'] =$comp->adresse;
+    
 header("Location: dashboard.php");
 
 

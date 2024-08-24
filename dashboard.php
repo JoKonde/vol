@@ -2,6 +2,16 @@
 <html lang="fr">
   <?php 
   session_start();
+  require_once 'Database.php';
+require_once 'User.php';
+require_once 'Vol.php';
+require_once 'Role.php';
+require_once 'Compagnie.php';
+
+$database = new Database();
+$db = $database->getConnection();
+  $compagnie = new Compagnie($db);
+ $listCompagnies= $compagnie->read();
 
 ?>
 <head>
@@ -133,12 +143,33 @@
                   <?php 
                     echo $_SESSION['email']
                 ?>
-                  </h6><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                  </h6>
+                  
+                  <span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                  <p>
+                    Role:
+                    <?php 
+                      echo $_SESSION['role']
+                    ?>
+                  </p>
                 </div>
-              </div><a class="dropdown-item" href="#"><i class="fi-user opacity-60 me-2"></i>Compagnie d'avions</a>
-              <a class="dropdown-item" href="#"><i class="fi-heart opacity-60 me-2"></i>Vol</a>
+              </div>
+              
+              
+              <?php
+if ($_SESSION['role'] == "Admin") { 
+    ?>
+    <a class="dropdown-item" href="#"><i class="fi-user opacity-60 me-2"></i>Compagnie d'avions</a>
+    <a class="dropdown-item" href="#"><i class="fi-heart opacity-60 me-2"></i>Vols</a>
+    <?php
+} else {
+    ?>
+    <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Reservations</a>
               <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Mes Vols</a>
               <a class="dropdown-item" href="#"><i class="fi-star opacity-60 me-2"></i>Payements</a>
+    <?php
+}
+?>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="index.php">Deconnexion</a>
             </div>
@@ -196,6 +227,12 @@
                     echo $_SESSION['email']
                 ?>
               </h3><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+              <p>
+                    Role:
+                    <?php 
+                      echo $_SESSION['role']
+                    ?>
+                  </p>
             </div>
           </div>
         </div>
@@ -207,21 +244,45 @@
               <i class="fi-align-justify me-2"></i>
           <?php 
                     echo $_SESSION['email']
-                ?>
+            ?>
         </a>
             <div class="collapse d-md-block" id="account-nav">
               <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
               <?php
-        if ($_SESSION['role'] == "Admin") {
-            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="#" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d\'aviation</a></li>';
-            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Vols</a></li>';
-        } else {
-          echo $_SESSION['role']."ggg";
-            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations</a></li>';
-            echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols</a></li>';
-            echo '<li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Payements</a></li>';
-        }
+if ($_SESSION['role'] == "Admin") { 
     ?>
+    <li class="nav-item mb-md-0 me-md-2 pe-md-1">
+        <a class="nav-link active" href="#" aria-current="page">
+            <i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d'aviation
+        </a>
+    </li>
+    <li class="nav-item mb-md-0 me-md-2 pe-md-1">
+        <a class="nav-link" href="#">
+            <i class="fi-heart mt-n1 me-2 fs-base"></i>Vols
+        </a>
+    </li>
+    <?php
+} else {
+    ?>
+    <li class="nav-item mb-md-0 me-md-2 pe-md-1">
+        <a class="nav-link" href="#">
+            <i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations
+        </a>
+    </li>
+    <li class="nav-item mb-md-0 me-md-2 pe-md-1">
+        <a class="nav-link" href="#">
+            <i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols
+        </a>
+    </li>
+    <li class="nav-item mb-md-0">
+        <a class="nav-link" href="#">
+            <i class="fi-bell mt-n1 me-2 fs-base"></i>Payements
+        </a>
+    </li>
+    <?php
+}
+?>
+
                 
                 <li class="nav-item d-md-none"><a class="nav-link" href="index.php"><i class="fi-logout mt-n1 me-2 fs-base"></i>Deconnexion</a></li>
               </ul>
@@ -231,7 +292,7 @@
             <h1 class="h3 mb-0">Compagnie d'aviation</h1>
           </div>
           <form action="t2.php" method="post">
-          <div class="border rounded-3 p-3 mb-2" id="personal-info">
+            <div class="border rounded-3 p-3 mb-2" id="personal-info">
             <!-- Name-->
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
@@ -278,10 +339,30 @@
           </div>
           <div class="d-flex align-items-center justify-content-between mt-4">
             <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="submit">Enregistrer</button>
-            <button class="btn btn-link btn-sm px-0" type="button"><i class="fi-trash me-2"></i>Delete account</button>
           </div>
           </form>
-          
+          <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
+            <h1 class="h3 mb-0">Liste Compagnie d'aviation</h1>
+          </div>
+          <table class="table table-striped-columns">
+    <tr>
+        <td>#</td>
+        <td>Nom</td>
+        <td>Adresse</td>
+    </tr>
+
+    <?php
+    $index = 1; // Initialiser la variable de numérotation
+    foreach ($listCompagnies as $comp) { ?>
+    <tr>
+        <td><?php echo $index++; ?></td>
+        <td><?php echo $comp['nom']; ?></td>
+        <td><?php echo $comp['adresse']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+
+
         </div>
       </div>
     </main>
@@ -361,6 +442,4 @@
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
   </body>
-
-<!-- Mirrored from finder.createx.studio/city-guide-account-info.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jul 2024 09:00:10 GMT -->
 </html>
