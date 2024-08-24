@@ -227,31 +227,60 @@
             </div>
           </div>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Personal Info</h1>
+            <h1 class="h3 mb-0">Compagnie d'aviation</h1>
           </div>
+          <form action="t2.php" method="post">
           <div class="border rounded-3 p-3 mb-2" id="personal-info">
             <!-- Name-->
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
                   <label class="form-label fw-bold">Nom compagnie</label>
-                  <div id="name-value">Annette Black</div>
+                  <div id="name-value"><?php 
+                  if(isset($_SESSION['nomCompagnie'])){
+                    if($_SESSION['nomCompagnie']){
+                      echo $_SESSION['nomCompagnie'];
+                    }
+                  }
+                  ?>
+                  </div>
                 </div>
                 <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-              </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <form action="t2.php" method="post">
-                <input class="form-control mt-3" name="nom" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="Not specified" >
-                </form>
+
                 
               </div>
+              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
+                <input class="form-control mt-3" name="nom" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="pe-2">
+                  <label class="form-label fw-bold">Adresse compagnie</label>
+                  <div id="adresse-value"><?php 
+                  if(isset($_SESSION['adresseCompagnie'])){
+                    if($_SESSION['adresseCompagnie']){
+                      echo $_SESSION['adresseCompagnie'];
+                    }
+                  }
+                  ?>
+                  </div>
+                </div>
+                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+              </div>
+              
+              
+              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
+                <input class="form-control mt-3" name="adresse" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
+              </div>
+              
             </div>
             
           </div>
           <div class="d-flex align-items-center justify-content-between mt-4">
-            <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="button">Save changes</button>
+            <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="submit">Enregistrer</button>
             <button class="btn btn-link btn-sm px-0" type="button"><i class="fi-trash me-2"></i>Delete account</button>
           </div>
+          </form>
+          
         </div>
       </div>
     </main>

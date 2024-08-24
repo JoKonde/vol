@@ -5,19 +5,22 @@ class Compagnie {
 
     public $id;
     public $nom;
+    public $adresse;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
     public function create() {
-        $query = "INSERT INTO " . $this->table_name . " SET nom=:nom";
+        $query = "INSERT INTO " . $this->table_name . " SET nom=:nom,adresse=:adresse";
 
         $stmt = $this->conn->prepare($query);
 
         $this->nom = htmlspecialchars(strip_tags($this->nom));
+        $this->adresse = htmlspecialchars(strip_tags($this->adresse));
 
         $stmt->bindParam(":nom", $this->nom);
+        $stmt->bindParam(":adresse", $this->adresse);
 
         return $stmt->execute();
     }
@@ -36,6 +39,8 @@ class Compagnie {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    
 
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET nom = :nom WHERE id = :id";
