@@ -252,12 +252,12 @@ if ($_SESSION['role'] == "Admin") {
 if ($_SESSION['role'] == "Admin") { 
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="dashboard.php" aria-current="page">
+        <a class="nav-link" href="dashboard.php" aria-current="page">
             <i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d'aviation
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link" href="vols.php">
+        <a class="nav-link active" href="vols.php">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Vols
         </a>
     </li>
@@ -289,50 +289,73 @@ if ($_SESSION['role'] == "Admin") {
             </div>
           </div>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Compagnie d'aviation</h1>
+            <h1 class="h3 mb-0">Création Vol</h1>
           </div>
           <form action="t2.php" method="post">
             <div class="border rounded-3 p-3 mb-2" id="personal-info">
             <!-- Name-->
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nom compagnie</label>
-                  <div id="name-value"><?php 
-                  if(isset($_SESSION['nomCompagnie'])){
-                    if($_SESSION['nomCompagnie']){
-                      echo $_SESSION['nomCompagnie'];
-                    }
-                  }
-                  ?>
-                  </div>
+              <div class="input-group input-group-lg border-end-md">
+                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                  <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">Ville depart</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kinshasa</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Lubumbashi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kananga</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-museum fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kisangani</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-entertainment fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Goma</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-meds fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Matadi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-makeup fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kindu</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-car fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">GEMENA</span></a></li>
+                  </ul>
                 </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-
+              </div>
+              </div>
+             
+              <div class="d-flex align-items-center justify-content-between">
+              <div class="input-group input-group-lg border-end-md">
+                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                  <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">Ville d'arrivée</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kinshasa</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Lubumbashi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kananga</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-museum fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kisangani</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-entertainment fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Goma</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-meds fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Matadi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-makeup fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kindu</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-car fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">GEMENA</span></a></li>
+                  </ul>
+                </div>
+              </div>
                 
               </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nom" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
-              </div>
               <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Adresse compagnie</label>
-                  <div id="adresse-value"><?php 
-                  if(isset($_SESSION['adresseCompagnie'])){
-                    if($_SESSION['adresseCompagnie']){
-                      echo $_SESSION['adresseCompagnie'];
-                    }
-                  }
-                  ?>
-                  </div>
+                
+              <div class="input-group input-group-lg border-end-md">
+                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                  <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">Compagnie</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kinshasa</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Lubumbashi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kananga</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-museum fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kisangani</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-entertainment fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Goma</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-meds fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Matadi</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-makeup fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kindu</span></a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fi-car fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">GEMENA</span></a></li>
+                  </ul>
                 </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+              </div>
+                
               </div>
               
               
-              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="adresse" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
-              </div>
+              
               
             </div>
             
@@ -342,7 +365,7 @@ if ($_SESSION['role'] == "Admin") {
           </div>
           </form>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Liste Compagnie d'aviation</h1>
+            <h1 class="h3 mb-0">Liste Vols</h1>
           </div>
           <table class="table table-striped-columns">
     <tr>
