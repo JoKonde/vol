@@ -6,7 +6,8 @@ class Vol {
     public $id;
     public $ville_depart;
     public $ville_arrivee;
-    public $date_vol;
+    public $date_vol_depart;
+    public $date_vol_arrivee;
     public $compagnie_id;
 
     public function __construct($db) {
@@ -14,18 +15,20 @@ class Vol {
     }
 
     public function create() {
-        $query = "INSERT INTO " . $this->table_name . " SET ville_depart=:ville_depart, ville_arrivee=:ville_arrivee, date_vol=:date_vol, compagnie_id=:compagnie_id";
+        $query = "INSERT INTO " . $this->table_name . " SET ville_depart=:ville_depart, ville_arrivee=:ville_arrivee, date_vol_depart=:date_vol_depart,date_vol_arrivee=:date_vol_arrivee, compagnie_id=:compagnie_id";
 
         $stmt = $this->conn->prepare($query);
 
         $this->ville_depart = htmlspecialchars(strip_tags($this->ville_depart));
         $this->ville_arrivee = htmlspecialchars(strip_tags($this->ville_arrivee));
-        $this->date_vol = htmlspecialchars(strip_tags($this->date_vol));
+        $this->date_vol_depart = htmlspecialchars(strip_tags($this->date_vol_depart));
+        $this->date_vol_arrivee = htmlspecialchars(strip_tags($this->date_vol_arrivee));
         $this->compagnie_id = htmlspecialchars(strip_tags($this->compagnie_id));
 
         $stmt->bindParam(":ville_depart", $this->ville_depart);
         $stmt->bindParam(":ville_arrivee", $this->ville_arrivee);
-        $stmt->bindParam(":date_vol", $this->date_vol);
+        $stmt->bindParam(":date_vol_depart", $this->date_vol_depart);
+        $stmt->bindParam(":date_vol_arrivee", $this->date_vol_arrivee);
         $stmt->bindParam(":compagnie_id", $this->compagnie_id);
 
         if ($stmt->execute()) {
@@ -42,19 +45,21 @@ class Vol {
     }
 
     public function update() {
-        $query = "UPDATE " . $this->table_name . " SET ville_depart = :ville_depart, ville_arrivee = :ville_arrivee, date_vol = :date_vol, compagnie_id = :compagnie_id WHERE id = :id";
+        $query = "UPDATE " . $this->table_name . " SET ville_depart = :ville_depart, ville_arrivee = :ville_arrivee, date_vol_depart=:date_vol_depart,date_vol_arrivee=:date_vol_arrivee, compagnie_id = :compagnie_id WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
 
         $this->ville_depart = htmlspecialchars(strip_tags($this->ville_depart));
         $this->ville_arrivee = htmlspecialchars(strip_tags($this->ville_arrivee));
-        $this->date_vol = htmlspecialchars(strip_tags($this->date_vol));
+        $stmt->bindParam(":date_vol_depart", $this->date_vol_depart);
+        $stmt->bindParam(":date_vol_arrivee", $this->date_vol_arrivee);
         $this->compagnie_id = htmlspecialchars(strip_tags($this->compagnie_id));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(':ville_depart', $this->ville_depart);
         $stmt->bindParam(':ville_arrivee', $this->ville_arrivee);
-        $stmt->bindParam(':date_vol', $this->date_vol);
+        $stmt->bindParam(":date_vol_depart", $this->date_vol_depart);
+        $stmt->bindParam(":date_vol_arrivee", $this->date_vol_arrivee);
         $stmt->bindParam(':compagnie_id', $this->compagnie_id);
         $stmt->bindParam(':id', $this->id);
 
@@ -81,15 +86,15 @@ class Vol {
         return false;
     }
 
-    public function search($ville_depart, $ville_arrivee, $date_vol) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE ville_depart = :ville_depart AND ville_arrivee = :ville_arrivee AND date_vol = :date_vol";
+    public function search($ville_depart, $ville_arrivee, $date_vol_depart,$date_vol_arrivee) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE ville_depart = :ville_depart AND ville_arrivee = :ville_arrivee AND date_vol_depart = :date_vol_depart AND date_vol_arrivee = :date_vol_arrivee";
 
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':ville_depart', $ville_depart);
         $stmt->bindParam(':ville_arrivee', $ville_arrivee);
-        $stmt->bindParam(':date_vol', $date_vol);
-
+        $stmt->bindParam(":date_vol_depart", $this->date_vol_depart);
+        $stmt->bindParam(":date_vol_arrivee", $this->date_vol_arrivee);
         $stmt->execute();
 
         return $stmt;

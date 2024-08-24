@@ -32,7 +32,8 @@ CREATE TABLE vol (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ville_depart VARCHAR(100) NOT NULL,
     ville_arrivee VARCHAR(100) NOT NULL,
-    date_vol DATETIME NOT NULL,
+    date_vol_depart DATETIME NOT NULL,
+    date_vol_arrivee DATETIME NOT NULL,
     compagnie_id INT,
     FOREIGN KEY (compagnie_id) REFERENCES compagnie(id)
 );
