@@ -30,7 +30,7 @@ class Role {
         $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function findById($id) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";

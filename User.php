@@ -36,7 +36,7 @@ class User {
         $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update() {
@@ -93,7 +93,7 @@ class User {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
         // Vérification du mot de passe
-        if ($user && ($this->password == $user['password'])) {
+        if ($user && password_verify($this->password, $user['password'])) {
             // Remplir l'objet utilisateur avec les valeurs de la base de données
             foreach ($user as $key => $value) {
                 $this->$key = $value;
@@ -102,6 +102,7 @@ class User {
         }
         return false;
     }
+    
     
 }
 ?>
