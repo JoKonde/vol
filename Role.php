@@ -35,21 +35,27 @@ class Role {
     public function findById($id) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
-        
-        // Vérifier si la préparation de la requête a réussi
+    
         if ($stmt === false) {
             throw new Exception('Erreur lors de la préparation de la requête.');
         }
-        
-        // Lier le paramètre :id à la valeur de $id
+    
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        
-        // Exécuter la requête
         $stmt->execute();
-        
-        // Retourner le résultat de la requête sous forme de tableau associatif
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($row) {
+            // Remplir les propriétés de l'objet Role avec les valeurs de la base de données
+            $this->id = $row['id'];
+            $this->nom = $row['nom'];
+            $this->date = $row['date'];
+            return $this;
+        }
+    
+        return null; // Retourner null si aucun rôle n'a été trouvé
     }
+    
     
 
     public function update() {

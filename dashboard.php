@@ -216,6 +216,7 @@
             echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="#" aria-current="page"><i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d\'aviation</a></li>';
             echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Vols</a></li>';
         } else {
+          echo $_SESSION['role']."ggg";
             echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-favorites.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations</a></li>';
             echo '<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="city-guide-account-reviews.html"><i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols</a></li>';
             echo '<li class="nav-item mb-md-0"><a class="nav-link" href="city-guide-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Payements</a></li>';
