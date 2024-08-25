@@ -286,6 +286,13 @@ if ($_SESSION['role'] == "Admin") {
           <form action="t2.php" method="post">
             <div class="border rounded-3 p-3 mb-2" id="personal-info">
             <!-- Name-->
+            <?php
+                  if (isset($_SESSION['msg'])) {
+                    echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
+                    // Supprimer le message d'erreur après l'affichage
+                    unset($_SESSION['msg']);
+                  }
+                  ?>
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">

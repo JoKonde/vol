@@ -16,11 +16,18 @@ $compagnie = new Compagnie($db);
 
 $compagnie->nom = $_POST['nom'];
 $compagnie->adresse = $_POST['adresse'];
-$comp= $compagnie->create();
+if(!$compagnie->nom || !$compagnie->adresse){
+    $_SESSION['msg'] = "Veuillez svp, selectionner tous les champs.";
+    header("Location: dashboard.php");
+
+}else{
+    $comp= $compagnie->create();
     $_SESSION['nomCompagnie'] =$comp->nom;
     $_SESSION['adresseCompagnie'] =$comp->adresse;
     
 header("Location: dashboard.php");
+}
+
 
 
 

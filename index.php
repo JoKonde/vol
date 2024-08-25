@@ -362,6 +362,7 @@ if (count($listUser) <= 0) {
             <td>Date Arrivée</td>
             <td>Prix</td>
             <td>Compagnie</td>
+            <td>Action</td>
           </tr>
 
           <?php
@@ -390,6 +391,8 @@ if (count($listUser) <= 0) {
               <td><?php echo $vol['date_vol_arrivee']; ?></td>
               <td><?php echo $vol['montant'] . "$"; ?></td>
               <td><?php echo $compOne2['nom']; ?></td>
+             <td><a class="btn btn-primary btn-lg rounded-pill w-10" onclick="alert('Veuillez vous connecter avant de payer ce billet. Ou si vous n avez pas encore un compte client, veuillez en créer un,MERCI.');">Payer</a></td>
+              
             </tr>
           <?php } ?>
         </table>

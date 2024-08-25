@@ -43,16 +43,5 @@ if($loggedInUser) {
     exit();
 }
 
-// Rechercher un vol
-$vol = new Vol($db);
 
-$vols = $vol->search('Paris', 'New York', '2024-12-24 00:00:00');
-if($vols->rowCount() > 0) {
-    while ($row = $vols->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        echo "Vol trouvé: $ville_depart -> $ville_arrivee le $date_vol.";
-    }
-} else {
-    echo "Aucun vol trouvé.";
-}
 ?>

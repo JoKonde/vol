@@ -23,7 +23,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vol->date_vol_depart = $_POST['date_vol_depart'];
     $vol->date_vol_arrivee = $_POST['date_vol_arrivee'];
     $vol->montant = $_POST['montant'];
-    $vol->create();
+    if(!$vol->compagnie_id || !$vol->ville_depart || !$vol->ville_arrivee || !$vol->date_vol_depart || !$vol->date_vol_arrivee){
+        $_SESSION['msg'] = "Veuillez svp, selectionner tous les champs.";
+        header("Location: vols.php");
+    
+    }else{
+        if($vol->montant<=0){
+            $_SESSION['msg'] = "SVP, le prix du billet doit etre superieur à zero.";
+    header("Location: vols.php");
+        }else{
+            if($vol->ville_depart==$vol->ville_arrivee){
+                $_SESSION['msg'] = "SVP, la ville de depart ne peut pas etre la meme que la ville de destination.";
+            header("Location: vols.php");
+            }else{
+                $vol->create();
+            }
+           
+        }
+        
+    }
+    
 }
     
 header("Location: vols.php");
