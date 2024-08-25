@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vol->ville_arrivee = $_POST['villeArrivee'];
     $vol->date_vol_depart = $_POST['date_vol_depart'];
     $vol->date_vol_arrivee = $_POST['date_vol_arrivee'];
+    $vol->montant = $_POST['montant'];
     $vol->create();
 }
     

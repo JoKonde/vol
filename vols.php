@@ -152,7 +152,7 @@ $listVols = $vol->read();
                             <div class="ps-2">
                                 <h6 class="fs-base mb-0">
                                     <?php
-                                    echo $_SESSION['email']
+                                    echo $_SESSION['noms']
                                     ?>
                                 </h6>
 
@@ -207,7 +207,7 @@ $listVols = $vol->read();
                         <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="rounded-circle me-2" src="img/avatars/36.png" width="30" alt="user">
                                 <?php
-                                echo $_SESSION['email']
+                                echo $_SESSION['noms']
                                 ?>
                             </a>
                             <div class="dropdown-menu">
@@ -235,7 +235,7 @@ $listVols = $vol->read();
                     <div class="ps-3 ps-sm-4">
                         <h3 class="h4 mb-2">
                             <?php
-                            echo $_SESSION['email']
+                            echo $_SESSION['noms']
                             ?>
                         </h3><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                         <p>
@@ -254,7 +254,7 @@ $listVols = $vol->read();
                     <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse">
                         <i class="fi-align-justify me-2"></i>
                         <?php
-                        echo $_SESSION['email']
+                        echo $_SESSION['noms']
                         ?>
                     </a>
                     <div class="collapse d-md-block" id="account-nav">
@@ -368,7 +368,14 @@ $listVols = $vol->read();
                                     </select>
                                        
                                     </div>
-
+                                    
+                                    
+                                </div>
+                                <div class="row">
+                                <div class="col-sm-3">
+                                <strong>Prix du billet</strong>
+                                <input type="number" name="montant" id="montant" class="form-control mt-3">
+                                </div>
                                 </div>
                             </div>
 
@@ -391,17 +398,30 @@ $listVols = $vol->read();
                 <table class="table table-striped-columns">
                     <tr>
                         <td>#</td>
-                        <td>Nom</td>
-                        <td>Adresse</td>
+                        <td>Ville Depart</td>
+                        <td>Date Depart</td>
+                        <td>Ville d'arrivée</td>
+                        <td>Date Arrivée</td>
+                        <td>Prix</td>
+                        <td>Compagnie</td>
                     </tr>
 
                     <?php
                     $index = 1; // Initialiser la variable de numérotation
-                    foreach ($listCompagnies as $comp) { ?>
+                    $compOne=new Compagnie($db);
+                    $compOne2=new Compagnie($db);
+
+                    foreach ($listVols as $vol) { 
+                        $compOne2=$compOne->findById($vol['compagnie_id']);
+                        ?>
                         <tr>
                             <td><?php echo $index++; ?></td>
-                            <td><?php echo $comp['nom']; ?></td>
-                            <td><?php echo $comp['adresse']; ?></td>
+                            <td><?php echo $vol['ville_depart']; ?></td>
+                            <td><?php echo $vol['date_vol_depart']; ?></td>
+                            <td><?php echo $vol['ville_arrivee']; ?></td>
+                            <td><?php echo $vol['date_vol_arrivee']; ?></td>
+                            <td><?php echo $vol['montant']."$"; ?></td>
+                            <td><?php echo $compOne2['nom']; ?></td>
                         </tr>
                     <?php } ?>
                 </table>

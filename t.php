@@ -33,6 +33,7 @@ if($loggedInUser) {
     $role->id = $user->role_id;
     $role= $role->findById($user->role_id);
     $_SESSION['email'] =$user->email;
+    $_SESSION['noms'] =$user->noms;
     $_SESSION['role'] =$role->nom;
     header("Location: dashboard.php");
     exit();

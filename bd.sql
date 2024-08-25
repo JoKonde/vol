@@ -13,8 +13,10 @@ CREATE TABLE role (
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
+    noms VARCHAR(300) NOT NULL,
+    sexe VARCHAR(2) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    act BOOLEAN DEFAULT TRUE,
+    etat BOOLEAN DEFAULT TRUE,
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES role(id)
 );
@@ -34,6 +36,7 @@ CREATE TABLE vol (
     ville_arrivee VARCHAR(100) NOT NULL,
     date_vol_depart DATETIME NOT NULL,
     date_vol_arrivee DATETIME NOT NULL,
+    montant DECIMAL(10, 2) NOT NULL,
     compagnie_id INT,
     FOREIGN KEY (compagnie_id) REFERENCES compagnie(id)
 );

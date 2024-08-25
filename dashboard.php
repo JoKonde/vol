@@ -141,7 +141,7 @@ $db = $database->getConnection();
                 <div class="ps-2">
                   <h6 class="fs-base mb-0">
                   <?php 
-                    echo $_SESSION['email']
+                    echo $_SESSION['noms']
                 ?>
                   </h6>
                   
@@ -196,7 +196,7 @@ if ($_SESSION['role'] == "Admin") {
               <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="rounded-circle me-2" src="img/avatars/36.png" width="30" alt="user">
               <?php 
-                    echo $_SESSION['email']
+                    echo $_SESSION['noms']
                 ?>
             </a>
                 <div class="dropdown-menu">
@@ -224,7 +224,7 @@ if ($_SESSION['role'] == "Admin") {
             <div class="ps-3 ps-sm-4">
               <h3 class="h4 mb-2">
                 <?php 
-                    echo $_SESSION['email']
+                    echo $_SESSION['noms']
                 ?>
               </h3><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
               <p>
@@ -243,7 +243,7 @@ if ($_SESSION['role'] == "Admin") {
             <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse">
               <i class="fi-align-justify me-2"></i>
           <?php 
-                    echo $_SESSION['email']
+                    echo $_SESSION['noms']
             ?>
         </a>
             <div class="collapse d-md-block" id="account-nav">
