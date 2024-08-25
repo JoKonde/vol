@@ -12,6 +12,7 @@ $database = new Database();
 $db = $database->getConnection();
   $compagnie = new Compagnie($db);
  $listCompagnies= $compagnie->read();
+ $vol = new Vol($db);
 
 ?>
 <head>
@@ -164,7 +165,7 @@ if ($_SESSION['role'] == "Admin") {
     <?php
 } else {
     ?>
-    <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Reservations</a>
+    <a class="dropdown-item " href="#"><i class="fi-home opacity-60 me-2"></i>Reservations</a>
               <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Mes Vols</a>
               <a class="dropdown-item" href="#"><i class="fi-star opacity-60 me-2"></i>Payements</a>
     <?php
@@ -257,7 +258,7 @@ if ($_SESSION['role'] == "Admin") {
 } else {
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link" href="#">
+        <a class="nav-link active" href="#">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations
         </a>
     </li>
@@ -280,6 +281,9 @@ if ($_SESSION['role'] == "Admin") {
               </ul>
             </div>
           </div>
+          <?php
+if ($_SESSION['role'] == "Admin") { 
+    ?>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
             <h1 class="h3 mb-0">Compagnie d'aviation</h1>
           </div>
@@ -360,8 +364,107 @@ if ($_SESSION['role'] == "Admin") {
     </tr>
     <?php } ?>
 </table>
+<?php }else{ ?>
+    <!--debut ici!-->
+    <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0 mt-4">
+            <!-- Search form-->
+            <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5" action="dashboard.php" method="post">
+              <div class="input-group input-group-lg border-end-md">
+                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                  <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
+                    <i class="fi-list me-2"></i><span class="dropdown-toggle-label">Ville de depart</span>
+                  </button>
+                  <input type="hidden" name="villeDepart" id="villeDepart">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="Kinshasa"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kinshasa</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Lubumbashi"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Lubumbashi</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kananga"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kananga</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kisangani"><i class="fi-museum fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kisangani</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Goma"><i class="fi-entertainment fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Goma</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Matadi"><i class="fi-meds fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Matadi</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kindu"><i class="fi-makeup fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kindu</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="GEMENA"><i class="fi-car fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">GEMENA</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <hr class="d-md-none my-2">
+              <div class="d-sm-flex">
+                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                  <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
+                    <i class="fi-list me-2"></i><span class="dropdown-toggle-label">Ville de destination</span>
+                  </button>
+                  <input type="hidden" name="villeArrivee" id="villeArrivee">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-value="Kinshasa"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kinshasa</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Lubumbashi"><i class="fi-cafe fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Lubumbashi</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kananga"><i class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kananga</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kisangani"><i class="fi-museum fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kisangani</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Goma"><i class="fi-entertainment fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Goma</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Matadi"><i class="fi-meds fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Matadi</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Kindu"><i class="fi-makeup fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">Kindu</span></a></li>
+                    <li><a class="dropdown-item" href="#" data-value="GEMENA"><i class="fi-car fs-lg opacity-60 me-2"></i><span class="dropdown-item-label">GEMENA</span></a></li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit">Chercher</button>
+              </div>
+            </form>
+          </div>
 
 
+          <section class="container py-5 pt-xxl-4 mt-md-2 mb-md-4 px-4">
+      <div class="row row-cols-lg-6 row-cols-sm-3 row-cols-2 g-3 g-xl-4">
+        <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
+          <h1 class="h3 mb-0">Liste Vols</h1>
+        </div>
+        <table class="table table-striped-columns">
+          <tr>
+            <td>#</td>
+            <td>Ville Depart</td>
+            <td>Date Depart</td>
+            <td>Ville d'arrivée</td>
+            <td>Date Arrivée</td>
+            <td>Prix</td>
+            <td>Compagnie</td>
+            <td>Action</td>
+          </tr>
+
+          <?php
+          $index = 1; // Initialiser la variable de numérotation
+          $compOne = new Compagnie($db);
+          $compOne2 = new Compagnie($db);
+          // Initialiser les variables avec une valeur par défaut
+          $villeDepart = isset($_POST['villeDepart']) ? $_POST['villeDepart'] : '';
+          $villeArrivee = isset($_POST['villeArrivee']) ? $_POST['villeArrivee'] : '';
+          // Déterminer la liste des vols en fonction des entrées du formulaire
+          if ($villeDepart && $villeArrivee) {
+            $listVols = $vol->rechercheParVille($villeDepart, $villeArrivee);
+          } else {
+            $listVols = $vol->read();
+          }
+
+
+          foreach ($listVols as $vol) {
+            $compOne2 = $compOne->findById($vol['compagnie_id']);
+          ?>
+            <tr>
+              <td><?php echo $index++; ?></td>
+              <td><?php echo $vol['ville_depart']; ?></td>
+              <td><?php echo $vol['date_vol_depart']; ?></td>
+              <td><?php echo $vol['ville_arrivee']; ?></td>
+              <td><?php echo $vol['date_vol_arrivee']; ?></td>
+              <td><?php echo $vol['montant'] . "$"; ?></td>
+              <td><?php echo $compOne2['nom']; ?></td>
+             <td><a class="btn btn-primary btn-lg rounded-pill w-10" >Payer</a></td>
+              
+            </tr>
+          <?php } ?>
+        </table>
+      </div>
+    </section>
+    <!--fin ici!-->
+
+
+    <?php } ?>
         </div>
       </div>
     </main>
@@ -393,5 +496,33 @@ if ($_SESSION['role'] == "Admin") {
     <script src="vendor/flatpickr/dist/flatpickr.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <script>
+    // Obtenir la date d'aujourd'hui
+    const today = new Date().toISOString().split('T')[0];
+
+    // Définir l'attribut min de l'élément input
+    document.getElementById('date_vol_depart').setAttribute('min', today);
+    document.getElementById('date_vol_arrivee').setAttribute('min', today);
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        let selectedValue = this.getAttribute('data-value');
+        let selectedText = this.querySelector('.dropdown-item-label').textContent;
+
+        let parentDropdown = this.closest('.dropdown');
+
+        if (parentDropdown.querySelector('.dropdown-toggle-label').textContent.includes('Ville de depart')) {
+          // Pour la ville de départ : envoyer l'ID et afficher le nom
+          document.getElementById('villeDepart').value = selectedValue;
+          parentDropdown.querySelector('.dropdown-toggle-label').textContent = selectedText;
+        } else if (parentDropdown.querySelector('.dropdown-toggle-label').textContent.includes("Ville d'arrivée")) {
+          // Pour la ville d'arrivée : envoyer l'ID et afficher le nom
+          document.getElementById('villeArrivee').value = selectedValue;
+          parentDropdown.querySelector('.dropdown-toggle-label').textContent = selectedText;
+        }
+      });
+    });
+  </script>
   </body>
 </html>

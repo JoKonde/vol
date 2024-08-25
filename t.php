@@ -14,15 +14,6 @@ $db = $database->getConnection();
 $user = new User($db);
 $role = new Role($db);
 
-/*$user->email = 'client@example.com';
-$user->password = '123456';
-$user->role_id = 2; // Client
-if($user->create()) {
-    echo "User created successfully.";
-} else {
-    echo "User could not be created.";
-}*/
-
 // Connexion d'un utilisateur
 
 $user->email = $_POST['email'];
