@@ -258,12 +258,12 @@ if ($_SESSION['role'] == "Admin") {
 } else {
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="#">
+        <a class="nav-link " href="#">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link" href="#">
+        <a class="nav-link active" href="#">
             <i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols
         </a>
     </li>
@@ -282,7 +282,7 @@ if ($_SESSION['role'] == "Admin") {
             </div>
           </div>
           <?php
-if ($_SESSION['role'] == "Admin") { 
+if ($_SESSION['role'] == "Client") { 
     ?>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
             <h1 class="h3 mb-0">Compagnie d'aviation</h1>
@@ -300,11 +300,11 @@ if ($_SESSION['role'] == "Admin") {
             <div class="border-bottom pb-3 mb-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
-                  <label class="form-label fw-bold">Nom compagnie</label>
+                  <label class="form-label fw-bold">Nombre Adulte</label>
                   <div id="name-value"><?php 
-                  if(isset($_SESSION['nomCompagnie'])){
-                    if($_SESSION['nomCompagnie']){
-                      echo $_SESSION['nomCompagnie'];
+                  if(isset($_SESSION['nbre_adulte'])){
+                    if($_SESSION['nbre_adulte']){
+                      echo $_SESSION['nbre_adulte'];
                     }
                   }
                   ?>
@@ -315,15 +315,15 @@ if ($_SESSION['role'] == "Admin") {
                 
               </div>
               <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nom" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
+                <input class="form-control mt-3" name="nbre_adulte" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
-                  <label class="form-label fw-bold">Adresse compagnie</label>
+                  <label class="form-label fw-bold">Nombre Bébé</label>
                   <div id="adresse-value"><?php 
-                  if(isset($_SESSION['adresseCompagnie'])){
-                    if($_SESSION['adresseCompagnie']){
-                      echo $_SESSION['adresseCompagnie'];
+                  if(isset($_SESSION['nbre_bebe'])){
+                    if($_SESSION['nbre_bebe']){
+                      echo $_SESSION['nbre_bebe'];
                     }
                   }
                   ?>
@@ -334,7 +334,48 @@ if ($_SESSION['role'] == "Admin") {
               
               
               <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="adresse" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
+                <input class="form-control mt-3" name="nbre_bebe" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
+              </div>
+              
+            </div>
+            <div class="border-bottom pb-3 mb-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="pe-2">
+                  <label class="form-label fw-bold">Nombre Enfant</label>
+                  <div id="name-value"><?php 
+                  if(isset($_SESSION['nbre_enfant'])){
+                    if($_SESSION['nbre_enfant']){
+                      echo $_SESSION['nbre_enfant'];
+                    }
+                  }
+                  ?>
+                  </div>
+                </div>
+                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+
+                
+              </div>
+              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
+                <input class="form-control mt-3" name="nbre_enfant" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="pe-2">
+                  <label class="form-label fw-bold">Nombre Bébé</label>
+                  <div id="adresse-value"><?php 
+                  if(isset($_SESSION['nbre_bebe'])){
+                    if($_SESSION['nbre_bebe']){
+                      echo $_SESSION['nbre_bebe'];
+                    }
+                  }
+                  ?>
+                  </div>
+                </div>
+                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+              </div>
+              
+              
+              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
+                <input class="form-control mt-3" name="nbre_bebe" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
               </div>
               
             </div>
