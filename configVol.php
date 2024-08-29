@@ -7,6 +7,7 @@ require_once 'User.php';
 require_once 'Vol.php';
 require_once 'Role.php';
 require_once 'Compagnie.php';
+require_once 'MonVol.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -285,9 +286,9 @@ if ($_SESSION['role'] == "Admin") {
 if ($_SESSION['role'] == "Client") { 
     ?>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Compagnie d'aviation</h1>
+            <h1 class="h3 mb-0">Configurer mon vol</h1>
           </div>
-          <form action="t2.php" method="post">
+          <form action="t5.php" method="post">
             <div class="border rounded-3 p-3 mb-2" id="personal-info">
             <!-- Name-->
             <?php
@@ -334,7 +335,7 @@ if ($_SESSION['role'] == "Client") {
               
               
               <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_bebe" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
+                <input class="form-control mt-3" name="nbre_bebe" type="number" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
               </div>
               
             </div>
@@ -356,7 +357,7 @@ if ($_SESSION['role'] == "Client") {
                 
               </div>
               <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_enfant" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
+                <input class="form-control mt-3" name="nbre_enfant" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
@@ -375,7 +376,7 @@ if ($_SESSION['role'] == "Client") {
               
               
               <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_bebe" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
+                <input class="form-control mt-3" name="nbre_bebe" type="number" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
               </div>
               
             </div>
