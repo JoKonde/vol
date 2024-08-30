@@ -14,7 +14,10 @@ $db = $database->getConnection();
   $compagnie = new Compagnie($db);
  $listCompagnies= $compagnie->read();
  $vol = new Vol($db);
-
+ $monVol = new MonVol($db);
+ $volId=$_SESSION['vol_id'];
+$userId=$_SESSION['idUser'];
+ $listBillets= $monVol->rechercheParUser($userId);
 ?>
 <head>
 <meta charset="utf-8">
@@ -259,12 +262,12 @@ if ($_SESSION['role'] == "Admin") {
 } else {
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="dashboard.php">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="#">
+        <a class="nav-link active" href="configVol.php">
             <i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols
         </a>
     </li>
@@ -387,22 +390,60 @@ if ($_SESSION['role'] == "Client") {
           </div>
           </form>
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Liste Compagnie d'aviation</h1>
+            <h1 class="h3 mb-0">Liste Billets</h1>
           </div>
           <table class="table table-striped-columns">
     <tr>
         <td>#</td>
-        <td>Nom</td>
-        <td>Adresse</td>
+        <td>Nombre Adulte</td>
+        <td>Nombre Bébé</td>
+        <td>Nombre Enfant</td>
+        <td>Vol</td>
+        <td>Action</td>
     </tr>
 
     <?php
     $index = 1; // Initialiser la variable de numérotation
-    foreach ($listCompagnies as $comp) { ?>
+    foreach ($listBillets as $billet) { ?>
     <tr>
         <td><?php echo $index++; ?></td>
-        <td><?php echo $comp['nom']; ?></td>
-        <td><?php echo $comp['adresse']; ?></td>
+        <td><?php echo $billet['nbre_adulte']; ?></td>
+        <td><?php echo $billet['nbre_bebe']; ?></td>
+        <td><?php echo $billet['nbre_enfant']; ?></td>
+        <td><?php echo $billet['vol_id']; ?></td>
+        <td>
+        <form name="pay" method="post" action="https://checkout.genesyspay.solutions/v1/init">
+        <input type="hidden" name="public_key" value="GPPUB-7258581b9cb7117fdbcc230a3f7017ffde23fbb6">
+        <input type="hidden" name="order_id" value="
+        <?php 
+        echo sprintf(
+        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        mt_rand(0, 0xffff), mt_rand(0, 0xffff), // 32 bits for "time_low"
+        mt_rand(0, 0xffff), // 16 bits for "time_mid"
+        mt_rand(0, 0x0fff) | 0x4000, // 16 bits for "time_hi_and_version", four most significant bits hold version number 4
+        mt_rand(0, 0x3fff) | 0x8000, // 16 bits, 8 bits for "clk_seq_hi_res", 8 bits for "clk_seq_low", two most significant bits hold zero and one for variant DCE1.1
+        mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff) // 48 bits for "node"
+    ); ?>
+        ">
+        
+        <input type="hidden" name="amount" value="
+        <?php 
+        $leVol=new Vol($db);
+        $leVol= $leVol->findById($billet['vol_id']);
+        $montant=($leVol["montant"]*$billet['nbre_adulte'])+($leVol["montant"]*$billet['nbre_bebe'])+($leVol["montant"]*$billet['nbre_enfant']);
+        echo  $montant; 
+        
+        ?>
+        
+        ">
+        <input type="hidden" name="currency" value="USD">
+        <input type="hidden" name="redirect_url" value="https://redirect.url">
+        <input type="hidden" name="status_url" value="https://callback.url">
+        <input type="hidden" name="cancel_url" value="https://mysite.url/cancel">
+        <input type="hidden" name="failed_url" value="https://mysite.url/failed">
+        <button type="submit" class="btn btn-primary btn-lg rounded-pill w-10">Payer</button>
+    </form>
+             </td>
     </tr>
     <?php } ?>
 </table>

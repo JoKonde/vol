@@ -258,12 +258,12 @@ if ($_SESSION['role'] == "Admin") {
 } else {
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="#">
+        <a class="nav-link active" href="dashboard.php">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Reservations
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="configVol.php">
             <i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols
         </a>
     </li>

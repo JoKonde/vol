@@ -81,5 +81,15 @@ class MonVol {
 
         return false;
     }
+
+    public function rechercheParUser($userId) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE user_id = :user_id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
