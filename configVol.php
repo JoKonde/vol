@@ -437,10 +437,10 @@ if ($_SESSION['role'] == "Client") {
         
         ">
         <input type="hidden" name="currency" value="USD">
-        <input type="hidden" name="redirect_url" value="https://redirect.url">
+        <input type="hidden" name="redirect_url" value="http://localhost/vol/payement-reussi.php">
         <input type="hidden" name="status_url" value="https://callback.url">
-        <input type="hidden" name="cancel_url" value="https://mysite.url/cancel">
-        <input type="hidden" name="failed_url" value="https://mysite.url/failed">
+        <input type="hidden" name="cancel_url" value="http://localhost/vol/payement-annule.php">
+        <input type="hidden" name="failed_url" value="http://localhost/vol/payement-echec.php">
         <button type="submit" class="btn btn-primary btn-lg rounded-pill w-10">Payer</button>
     </form>
              </td>
