@@ -8,15 +8,23 @@ require_once 'Vol.php';
 require_once 'Role.php';
 require_once 'Compagnie.php';
 require_once 'MonVol.php';
+require_once 'Paiement.php';
 
 $database = new Database();
 $db = $database->getConnection();
 $compagnie = new Compagnie($db);
+$payment = new Paiement($db);
 $listCompagnies = $compagnie->read();
 $vol = new Vol($db);
 $monVol = new MonVol($db);
 $volId = $_SESSION['vol_id'];
 $userId = $_SESSION['idUser'];
+$montant=$_SESSION['montant'];
+$monVolId=$_SESSION['monVol'];
+$payment->mon_vol_id=$monVolId;
+$payment->montant=$montant;
+
+ $payment->create();
 $listBillets = $monVol->rechercheParUser($userId);
 ?>
 

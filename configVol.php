@@ -430,7 +430,9 @@ if ($_SESSION['role'] == "Client") {
         <?php 
         $leVol=new Vol($db);
         $leVol= $leVol->findById($billet['vol_id']);
+        $_SESSION['monVol'] = $billet['id'];
         $montant=($leVol["montant"]*$billet['nbre_adulte'])+($leVol["montant"]*$billet['nbre_bebe'])+($leVol["montant"]*$billet['nbre_enfant']);
+        $_SESSION['montant'] = $montant;
         echo  $montant; 
         
         ?>
