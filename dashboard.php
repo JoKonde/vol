@@ -165,9 +165,9 @@ if ($_SESSION['role'] == "Admin") {
     <?php
 } else {
     ?>
-    <a class="dropdown-item " href="#"><i class="fi-home opacity-60 me-2"></i>Reservations</a>
-              <a class="dropdown-item" href="#"><i class="fi-home opacity-60 me-2"></i>Mes Vols</a>
-              <a class="dropdown-item" href="#"><i class="fi-star opacity-60 me-2"></i>Payements</a>
+    <a class="dropdown-item " href="dashboard.php"><i class="fi-home opacity-60 me-2"></i>Reservations</a>
+              <a class="dropdown-item" href="configVol.php"><i class="fi-home opacity-60 me-2"></i>Mes Vols</a>
+              <a class="dropdown-item" href="VoirPaiement.php"><i class="fi-star opacity-60 me-2"></i>Payements</a>
     <?php
 }
 ?>
@@ -268,7 +268,7 @@ if ($_SESSION['role'] == "Admin") {
         </a>
     </li>
     <li class="nav-item mb-md-0">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="VoirPaiement.php">
             <i class="fi-bell mt-n1 me-2 fs-base"></i>Payements
         </a>
     </li>

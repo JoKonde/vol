@@ -69,5 +69,24 @@ class Paiement {
 
         return false;
     }
+
+    // Méthode pour trouver les paiements par user_id
+    public function findByUserId($user_id) {
+        $query = "SELECT p.* 
+                  FROM " . $this->table_name . " p
+                  JOIN mon_vol mv ON p.mon_vol_id = mv.id
+                  WHERE mv.user_id = :user_id";
+
+        $stmt = $this->conn->prepare($query);
+
+        // Sécuriser l'entrée utilisateur
+        $user_id = htmlspecialchars(strip_tags($user_id));
+
+        $stmt->bindParam(':user_id', $user_id);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

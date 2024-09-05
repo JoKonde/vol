@@ -8,16 +8,19 @@ require_once 'Vol.php';
 require_once 'Role.php';
 require_once 'Compagnie.php';
 require_once 'MonVol.php';
+require_once 'Paiement.php';
 
 $database = new Database();
 $db = $database->getConnection();
   $compagnie = new Compagnie($db);
+  $payement = new Paiement($db);
  $listCompagnies= $compagnie->read();
  $vol = new Vol($db);
  $monVol = new MonVol($db);
  $volId=$_SESSION['vol_id'];
 $userId=$_SESSION['idUser'];
  $listBillets= $monVol->rechercheParUser($userId);
+$listPayments=$payement->findByUserId($userId);
 ?>
 <head>
 <meta charset="utf-8">
@@ -267,12 +270,12 @@ if ($_SESSION['role'] == "Admin") {
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="configVol.php">
+        <a class="nav-link " href="configVol.php">
             <i class="fi-star mt-n1 me-2 fs-base"></i>Mes Vols
         </a>
     </li>
     <li class="nav-item mb-md-0">
-        <a class="nav-link" href="VoirPaiement.php">
+        <a class="nav-link active" href="VoirPaiement.php">
             <i class="fi-bell mt-n1 me-2 fs-base"></i>Payements
         </a>
     </li>
@@ -288,164 +291,27 @@ if ($_SESSION['role'] == "Admin") {
           <?php
 if ($_SESSION['role'] == "Client") { 
     ?>
+          
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Configurer mon vol</h1>
-          </div>
-          <form action="t5.php" method="post">
-            <div class="border rounded-3 p-3 mb-2" id="personal-info">
-            <!-- Name-->
-            <?php
-                  if (isset($_SESSION['msg'])) {
-                    echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
-                    // Supprimer le message d'erreur après l'affichage
-                    unset($_SESSION['msg']);
-                  }
-                  ?>
-            <div class="border-bottom pb-3 mb-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nombre Adulte</label>
-                  <div id="name-value"><?php 
-                  if(isset($_SESSION['nbre_adulte'])){
-                    if($_SESSION['nbre_adulte']){
-                      echo $_SESSION['nbre_adulte'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-
-                
-              </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_adulte" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
-              </div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nombre Bébé</label>
-                  <div id="adresse-value"><?php 
-                  if(isset($_SESSION['nbre_bebe'])){
-                    if($_SESSION['nbre_bebe']){
-                      echo $_SESSION['nbre_bebe'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-              </div>
-              
-              
-              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_bebe" type="number" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
-              </div>
-              
-            </div>
-            <div class="border-bottom pb-3 mb-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nombre Enfant</label>
-                  <div id="name-value"><?php 
-                  if(isset($_SESSION['nbre_enfant'])){
-                    if($_SESSION['nbre_enfant']){
-                      echo $_SESSION['nbre_enfant'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-
-                
-              </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_enfant" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
-              </div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nombre Bébé</label>
-                  <div id="adresse-value"><?php 
-                  if(isset($_SESSION['nbre_bebe'])){
-                    if($_SESSION['nbre_bebe']){
-                      echo $_SESSION['nbre_bebe'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-              </div>
-              
-              
-              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_bebe" type="number" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
-              </div>
-              
-            </div>
-            
-          </div>
-          <div class="d-flex align-items-center justify-content-between mt-4">
-            <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="submit">Enregistrer</button>
-          </div>
-          </form>
-          <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Liste Billets</h1>
+            <h1 class="h3 mb-0">Liste Payements</h1>
           </div>
           <table class="table table-striped-columns">
     <tr>
         <td>#</td>
-        <td>Nombre Adulte</td>
-        <td>Nombre Bébé</td>
-        <td>Nombre Enfant</td>
+        <td>Montant</td>
+        <td>Crée le</td>
         <td>Vol</td>
-        <td>Action</td>
     </tr>
 
     <?php
     $index = 1; // Initialiser la variable de numérotation
-    foreach ($listBillets as $billet) { ?>
+    foreach ($listPayments as $paie) { ?>
     <tr>
         <td><?php echo $index++; ?></td>
-        <td><?php echo $billet['nbre_adulte']; ?></td>
-        <td><?php echo $billet['nbre_bebe']; ?></td>
-        <td><?php echo $billet['nbre_enfant']; ?></td>
-        <td><?php echo $billet['vol_id']; ?></td>
-        <td>
-        <form name="pay" method="post" action="https://checkout.genesyspay.solutions/v1/init">
-        <input type="hidden" name="public_key" value="GPPUB-7258581b9cb7117fdbcc230a3f7017ffde23fbb6">
-        <input type="hidden" name="order_id" value="
-        <?php 
-        echo sprintf(
-        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-        mt_rand(0, 0xffff), mt_rand(0, 0xffff), // 32 bits for "time_low"
-        mt_rand(0, 0xffff), // 16 bits for "time_mid"
-        mt_rand(0, 0x0fff) | 0x4000, // 16 bits for "time_hi_and_version", four most significant bits hold version number 4
-        mt_rand(0, 0x3fff) | 0x8000, // 16 bits, 8 bits for "clk_seq_hi_res", 8 bits for "clk_seq_low", two most significant bits hold zero and one for variant DCE1.1
-        mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff) // 48 bits for "node"
-    ); ?>
-        ">
+        <td><?php echo $paie['montant']; ?></td>
+        <td><?php echo $paie['date']; ?></td>
+        <td><?php echo $paie['mon_vol_id']; ?></td>
         
-        <input type="hidden" name="amount" value="
-        <?php 
-        $leVol=new Vol($db);
-        $leVol= $leVol->findById($billet['vol_id']);
-        $_SESSION['monVol'] = $billet['id'];
-        $montant=($leVol["montant"]*$billet['nbre_adulte'])+($leVol["montant"]*$billet['nbre_bebe'])+($leVol["montant"]*$billet['nbre_enfant']);
-        $_SESSION['montant'] = $montant;
-        echo  $montant; 
-        
-        ?>
-        
-        ">
-        <input type="hidden" name="currency" value="USD">
-        <input type="hidden" name="redirect_url" value="http://localhost/vol/payement-reussi.php">
-        <input type="hidden" name="status_url" value="https://callback.url">
-        <input type="hidden" name="cancel_url" value="http://localhost/vol/payement-annule.php">
-        <input type="hidden" name="failed_url" value="http://localhost/vol/payement-echec.php">
-        <button type="submit" class="btn btn-primary btn-lg rounded-pill w-10">Payer</button>
-    </form>
-             </td>
     </tr>
     <?php } ?>
 </table>
