@@ -146,7 +146,7 @@ $listVols = $vol->read();
                 <a class="navbar-brand me-3 me-xl-4" href="index.php">
                     <img class="d-block" src="img/logo.png" width="90" alt="Finder"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="city-guide-account-info.html"><img class="rounded-circle" src="img/avatars/36.png" width="40" alt="Annette Black"></a>
+                <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="index.php"><img class="rounded-circle" src="img/avatars/36.png" width="40" alt="Annette Black"></a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="img/avatars/24.png" width="48" alt="Annette Black">
                             <div class="ps-2">
@@ -193,7 +193,7 @@ $listVols = $vol->read();
 
                         </li>
                         <!-- Menu items-->
-                        
+
 
 
                         <li class="nav-item dropdown d-lg-none"><a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -264,6 +264,12 @@ $listVols = $vol->read();
                                         <i class="fi-heart mt-n1 me-2 fs-base"></i>Vols
                                     </a>
                                 </li>
+
+                                <li class="nav-item mb-md-0 me-md-2 pe-md-1">
+                                    <a class="nav-link" href="billets.php">
+                                        <i class="fi-heart mt-n1 me-2 fs-base"></i>Billets
+                                    </a>
+                                </li>
                             <?php
                             } else {
                             ?>
@@ -298,12 +304,12 @@ $listVols = $vol->read();
                     <div class="border rounded-3 p-3 mb-2" id="personal-info">
                         <!-- Name-->
                         <?php
-                  if (isset($_SESSION['msg'])) {
-                    echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
-                    // Supprimer le message d'erreur après l'affichage
-                    unset($_SESSION['msg']);
-                  }
-                  ?>
+                        if (isset($_SESSION['msg'])) {
+                            echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
+                            // Supprimer le message d'erreur après l'affichage
+                            unset($_SESSION['msg']);
+                        }
+                        ?>
                         <div class="border-bottom pb-3 mb-3">
                             <div class="container">
                                 <div class="row">
@@ -358,23 +364,23 @@ $listVols = $vol->read();
                                     </div>
 
                                     <div class="col d-flex align-items-center justify-content-between">
-                                    <select name="compagnie" id="compagnie" class="form-select">
-                                    <option value="" selected disabled>Compagnie</option>
-                                    <?php
-                                                    foreach ($listCompagnies as $comp) { ?>
-                                                        <option value="<?php echo $comp['id']; ?>"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label"><?php echo $comp['nom']; ?></span></option>
-                                                    <?php } ?>
-                                    </select>
-                                       
+                                        <select name="compagnie" id="compagnie" class="form-select">
+                                            <option value="" selected disabled>Compagnie</option>
+                                            <?php
+                                            foreach ($listCompagnies as $comp) { ?>
+                                                <option value="<?php echo $comp['id']; ?>"><i class="fi-bed fs-lg opacity-60 me-2"></i><span class="dropdown-item-label"><?php echo $comp['nom']; ?></span></option>
+                                            <?php } ?>
+                                        </select>
+
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <div class="row">
-                                <div class="col-sm-3">
-                                <strong>Prix du billet</strong>
-                                <input type="number" name="montant" id="montant" class="form-control mt-3">
-                                </div>
+                                    <div class="col-sm-3">
+                                        <strong>Prix du billet</strong>
+                                        <input type="number" name="montant" id="montant" class="form-control mt-3">
+                                    </div>
                                 </div>
                             </div>
 
@@ -407,19 +413,19 @@ $listVols = $vol->read();
 
                     <?php
                     $index = 1; // Initialiser la variable de numérotation
-                    $compOne=new Compagnie($db);
-                    $compOne2=new Compagnie($db);
+                    $compOne = new Compagnie($db);
+                    $compOne2 = new Compagnie($db);
 
-                    foreach ($listVols as $vol) { 
-                        $compOne2=$compOne->findById($vol['compagnie_id']);
-                        ?>
+                    foreach ($listVols as $vol) {
+                        $compOne2 = $compOne->findById($vol['compagnie_id']);
+                    ?>
                         <tr>
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $vol['ville_depart']; ?></td>
                             <td><?php echo $vol['date_vol_depart']; ?></td>
                             <td><?php echo $vol['ville_arrivee']; ?></td>
                             <td><?php echo $vol['date_vol_arrivee']; ?></td>
-                            <td><?php echo $vol['montant']."$"; ?></td>
+                            <td><?php echo $vol['montant'] . "$"; ?></td>
                             <td><?php echo $compOne2['nom']; ?></td>
                         </tr>
                     <?php } ?>
@@ -431,24 +437,24 @@ $listVols = $vol->read();
     </main>
     <!-- Footer-->
     <footer class="footer pt-lg-5 pt-4 bg-dark text-light">
-    
-    <div class="py-4 border-top border-light">
-      <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between py-2">
-        <!-- Copyright-->
-        <p class="order-lg-1 order-2 fs-sm mb-2 mb-lg-0"><span class="text-light opacity-60">&copy; 2024 Tous les droits reservés.</span></p>
-        <div class="d-flex flex-lg-row flex-column align-items-center order-lg-2 order-1 ms-lg-4 mb-lg-0 mb-4">
-          <!-- Links-->
-          
-          <div class="d-flex align-items-center">
-            <!-- Language switcher-->
-            
-            <!-- Socials-->
-            <div class="ms-4 ps-lg-2 text-nowrap"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-telegram"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-messenger"></i></a></div>
-          </div>
+
+        <div class="py-4 border-top border-light">
+            <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between py-2">
+                <!-- Copyright-->
+                <p class="order-lg-1 order-2 fs-sm mb-2 mb-lg-0"><span class="text-light opacity-60">&copy; 2024 Tous les droits reservés.</span></p>
+                <div class="d-flex flex-lg-row flex-column align-items-center order-lg-2 order-1 ms-lg-4 mb-lg-0 mb-4">
+                    <!-- Links-->
+
+                    <div class="d-flex align-items-center">
+                        <!-- Language switcher-->
+
+                        <!-- Socials-->
+                        <div class="ms-4 ps-lg-2 text-nowrap"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-telegram"></i></a><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2" href="#"><i class="fi-messenger"></i></a></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up"> </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -473,7 +479,7 @@ $listVols = $vol->read();
 
                 let parentDropdown = this.closest('.dropdown');
 
-                 if (parentDropdown.querySelector('.dropdown-toggle-label').textContent.includes('Ville de depart')) {
+                if (parentDropdown.querySelector('.dropdown-toggle-label').textContent.includes('Ville de depart')) {
                     // Pour la ville de départ : envoyer l'ID et afficher le nom
                     document.getElementById('villeDepart').value = selectedValue;
                     parentDropdown.querySelector('.dropdown-toggle-label').textContent = selectedText;

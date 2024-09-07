@@ -140,7 +140,7 @@ $userId=$_SESSION['idUser'];
           <a class="navbar-brand me-3 me-xl-4" href="index.php">
             <img class="d-block" src="img/logo.png" width="90" alt="Finder"></a>
           <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="city-guide-account-info.html"><img class="rounded-circle" src="img/avatars/36.png" width="40" alt="Annette Black"></a>
+          <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3"><a class="d-block py-2" href="index.php"><img class="rounded-circle" src="img/avatars/36.png" width="40" alt="Annette Black"></a>
             <div class="dropdown-menu dropdown-menu-end">
               <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="img/avatars/24.png" width="48" alt="Annette Black">
                 <div class="ps-2">
@@ -305,7 +305,7 @@ if ($_SESSION['role'] == "Client") {
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
                   <label class="form-label fw-bold">Nombre Adulte</label>
-                  <div id="name-value"><?php 
+                  <div id="nbreAdulte"><?php 
                   if(isset($_SESSION['nbre_adulte'])){
                     if($_SESSION['nbre_adulte']){
                       echo $_SESSION['nbre_adulte'];
@@ -314,12 +314,12 @@ if ($_SESSION['role'] == "Client") {
                   ?>
                   </div>
                 </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#nbreAdulte-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
 
                 
               </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_adulte" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
+              <div class="collapse" id="nbreAdulte-collapse" data-bs-parent="#personal-info">
+                <input class="form-control mt-3" name="nbre_adulte" type="number" data-bs-binded-element="#nbreAdulte" data-bs-unset-value="---vide----" >
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div class="pe-2">
@@ -362,25 +362,10 @@ if ($_SESSION['role'] == "Client") {
               <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
                 <input class="form-control mt-3" name="nbre_enfant" type="number" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
               </div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nombre Bébé</label>
-                  <div id="adresse-value"><?php 
-                  if(isset($_SESSION['nbre_bebe'])){
-                    if($_SESSION['nbre_bebe']){
-                      echo $_SESSION['nbre_bebe'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-              </div>
               
               
-              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nbre_bebe" type="number" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
-              </div>
+              
+              
               
             </div>
             

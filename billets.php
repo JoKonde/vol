@@ -7,13 +7,15 @@ require_once 'User.php';
 require_once 'Vol.php';
 require_once 'Role.php';
 require_once 'Compagnie.php';
+require_once 'CompagnieVolPaiement.php';
 
 $database = new Database();
 $db = $database->getConnection();
   $compagnie = new Compagnie($db);
+  $billet = new CompagnieVolPaiement($db);
  $listCompagnies= $compagnie->read();
  $vol = new Vol($db);
-
+$listBillets=$billet->fetchDetails();
 ?>
 <head>
 <meta charset="utf-8">
@@ -245,7 +247,7 @@ if ($_SESSION['role'] == "Admin") {
 if ($_SESSION['role'] == "Admin") { 
     ?>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link active" href="dashboard.php" aria-current="page">
+        <a class="nav-link" href="dashboard.php" aria-current="page">
             <i class="fi-user mt-n1 me-2 fs-base"></i>Compagnie d'aviation
         </a>
     </li>
@@ -255,7 +257,7 @@ if ($_SESSION['role'] == "Admin") {
         </a>
     </li>
     <li class="nav-item mb-md-0 me-md-2 pe-md-1">
-        <a class="nav-link" href="billets.php">
+        <a class="nav-link active" href="billets.php">
             <i class="fi-heart mt-n1 me-2 fs-base"></i>Billets
         </a>
     </li>
@@ -289,83 +291,35 @@ if ($_SESSION['role'] == "Admin") {
           <?php
 if ($_SESSION['role'] == "Admin") { 
     ?>
+          
           <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Compagnie d'aviation</h1>
-          </div>
-          <form action="t2.php" method="post">
-            <div class="border rounded-3 p-3 mb-2" id="personal-info">
-            <!-- Name-->
-            <?php
-                  if (isset($_SESSION['msg'])) {
-                    echo "<p class='alert alert-danger'>" . $_SESSION['msg'] . "</p>";
-                    // Supprimer le message d'erreur après l'affichage
-                    unset($_SESSION['msg']);
-                  }
-                  ?>
-            <div class="border-bottom pb-3 mb-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Nom compagnie</label>
-                  <div id="name-value"><?php 
-                  if(isset($_SESSION['nomCompagnie'])){
-                    if($_SESSION['nomCompagnie']){
-                      echo $_SESSION['nomCompagnie'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-
-                
-              </div>
-              <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="nom" type="text" data-bs-binded-element="#name-value" data-bs-unset-value="---vide----" >
-              </div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="pe-2">
-                  <label class="form-label fw-bold">Adresse compagnie</label>
-                  <div id="adresse-value"><?php 
-                  if(isset($_SESSION['adresseCompagnie'])){
-                    if($_SESSION['adresseCompagnie']){
-                      echo $_SESSION['adresseCompagnie'];
-                    }
-                  }
-                  ?>
-                  </div>
-                </div>
-                <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#adresse-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-              </div>
-              
-              
-              <div class="collapse" id="adresse-collapse" data-bs-parent="#personal-info">
-                <input class="form-control mt-3" name="adresse" type="text" data-bs-binded-element="#adresse-value" data-bs-unset-value="---vide----" > 
-              </div>
-              
-            </div>
-            
-          </div>
-          <div class="d-flex align-items-center justify-content-between mt-4">
-            <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="submit">Enregistrer</button>
-          </div>
-          </form>
-          <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2">
-            <h1 class="h3 mb-0">Liste Compagnie d'aviation</h1>
+            <h1 class="h3 mb-0">Liste Billets</h1>
           </div>
           <table class="table table-striped-columns">
     <tr>
         <td>#</td>
-        <td>Nom</td>
-        <td>Adresse</td>
+        <td>Compagnie d'aviation</td>
+        <td>Ville de depart</td>
+        <td>Ville d'arrivée</td>
+        <td>Date de depart</td>
+        <td>Date d'arrivée</td>
+        <td>Montant</td>
+        <td>Clients</td>
+        
     </tr>
 
     <?php
     $index = 1; // Initialiser la variable de numérotation
-    foreach ($listCompagnies as $comp) { ?>
+    foreach ($listBillets as $billet) { ?>
     <tr>
         <td><?php echo $index++; ?></td>
-        <td><?php echo $comp['nom']; ?></td>
-        <td><?php echo $comp['adresse']; ?></td>
+        <td><?php echo $billet['compagnieNom']; ?></td>
+        <td><?php echo $billet['villeDepart']; ?></td>
+        <td><?php echo $billet['villeArrivee']; ?></td>
+        <td><?php echo $billet['dateDepart']; ?></td>
+        <td><?php echo $billet['dateArrivee']; ?></td>
+        <td><?php echo $billet['montantPaiement']; ?></td>
+        <td><?php echo $billet['userName']; ?></td>
     </tr>
     <?php } ?>
 </table>
