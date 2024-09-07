@@ -318,7 +318,7 @@ if ($_SESSION['role'] == "Admin") {
         <td><?php echo $billet['villeArrivee']; ?></td>
         <td><?php echo $billet['dateDepart']; ?></td>
         <td><?php echo $billet['dateArrivee']; ?></td>
-        <td><?php echo $billet['montantPaiement']; ?></td>
+        <td><?php echo $billet['montantPaiement']; ?>$</td>
         <td><?php echo $billet['userName']; ?></td>
     </tr>
     <?php } ?>
