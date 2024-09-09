@@ -398,7 +398,7 @@ if ($_SESSION['role'] == "Client") {
         <td><?php echo $billet['vol_id']; ?></td>
         <td>
         <form name="pay" method="post" action="https://checkout.genesyspay.solutions/v1/init">
-        <input type="hidden" name="public_key" value="GPPUB-7258581b9cb7117fdbcc230a3f7017ffde23fbb6">
+        <input type="hidden" name="public_key" value="GPPUB-69399c71f332a5cb00891368e557f12d50ac141f">
         <input type="hidden" name="order_id" value="
         <?php 
         echo sprintf(
